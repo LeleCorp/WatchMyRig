@@ -34,11 +34,6 @@ namespace watchmyrig
             submitButton = FindViewById<Button>(Resource.Id.submitButton);
 
             submitButton.SetOnTouchListener(this);
-        }
-
-        protected override void OnStart()
-        {
-            base.OnStart();
 
             // Fill Pool Spinner items from Ressource 
             poolSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(poolSpinner_ItemSelected);
@@ -48,6 +43,11 @@ namespace watchmyrig
 
             // Fill coin spinner switch POOLSPINNER
             coinSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(coinSpinner_ItemSelected);
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
         }
 
 
