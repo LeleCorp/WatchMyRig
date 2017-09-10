@@ -18,7 +18,6 @@ namespace watchmyrig
     {
         private Spinner poolSpinner;
         private Spinner coinSpinner;
-        private object adapterEthermineCoin;
 
 
         protected override void OnCreate(Bundle bundle)
@@ -30,7 +29,6 @@ namespace watchmyrig
             // Declare Pool Spinner items
             poolSpinner = FindViewById<Spinner>(Resource.Id.spinnerPool);
             coinSpinner = FindViewById<Spinner>(Resource.Id.spinnerCoin);
-
         }
 
         protected override void OnStart()
@@ -50,10 +48,8 @@ namespace watchmyrig
         private void poolSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-
             string textToast = string.Format("You have selected {0} as pool server", spinner.GetItemAtPosition(e.Position));
             Toast.MakeText(this, textToast, ToastLength.Long).Show();
-
 
             switch (spinner.GetItemAtPosition(e.Position).ToString())
             {
@@ -74,7 +70,6 @@ namespace watchmyrig
         private void coinSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-
             string textToast = string.Format("You have selected {0} as mine coin", spinner.GetItemAtPosition(e.Position));
             Toast.MakeText(this, textToast, ToastLength.Long).Show();
         }
