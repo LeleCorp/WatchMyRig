@@ -73,7 +73,7 @@
         android:layout_marginLeft="15.0dp"
         android:layout_marginRight="15.0dp" />
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/submitButton"
         android:text="@string/submit"
         android:layout_width="match_parent"
         android:layout_column="0"

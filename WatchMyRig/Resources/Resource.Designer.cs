@@ -2301,9 +2301,6 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07002a
 			public const int bottom = 2131165226;
 			
-			// aapt resource value: 0x7f07006e
-			public const int button1 = 2131165294;
-			
 			// aapt resource value: 0x7f070044
 			public const int buttonPanel = 2131165252;
 			
@@ -2663,6 +2660,9 @@ namespace watchmyrig
 			
 			// aapt resource value: 0x7f070093
 			public const int status_bar_latest_event_content = 2131165331;
+			
+			// aapt resource value: 0x7f07006e
+			public const int submitButton = 2131165294;
 			
 			// aapt resource value: 0x7f070065
 			public const int submit_area = 2131165285;

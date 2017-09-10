@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -14,10 +13,12 @@ using Android.Widget;
 namespace watchmyrig
 {
     [Activity(Label = "Add address", MainLauncher = true, Icon = "@drawable/icon")]
-    public class AddWallet : Activity
+    public class AddWallet : Activity, Android.Views.View.IOnTouchListener
     {
+        private EditText adrEditText;
         private Spinner poolSpinner;
         private Spinner coinSpinner;
+        private Button submitButton;
 
 
         protected override void OnCreate(Bundle bundle)
@@ -26,9 +27,13 @@ namespace watchmyrig
 
             SetContentView(Resource.Layout.AddWallet);
 
-            // Declare Pool Spinner items
+            // Declare UI elements
+            adrEditText = FindViewById<EditText>(Resource.Id.editTextPublicAddress);
             poolSpinner = FindViewById<Spinner>(Resource.Id.spinnerPool);
             coinSpinner = FindViewById<Spinner>(Resource.Id.spinnerCoin);
+            submitButton = FindViewById<Button>(Resource.Id.submitButton);
+
+            submitButton.SetOnTouchListener(this);
         }
 
         protected override void OnStart()
@@ -45,6 +50,10 @@ namespace watchmyrig
             coinSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(coinSpinner_ItemSelected);
         }
 
+
+
+#region ClickOnElement
+    #region Spinner
         private void poolSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -73,5 +82,20 @@ namespace watchmyrig
             string textToast = string.Format("You have selected {0} as mine coin", spinner.GetItemAtPosition(e.Position));
             Toast.MakeText(this, textToast, ToastLength.Long).Show();
         }
+        #endregion
+        public bool OnTouch(Android.Views.View v, MotionEvent e)
+        {
+            if (adrEditText.Text.ToString().Equals(null) || adrEditText.Text.ToString().Equals(""))
+            {
+                // TODO: Display the error alert
+                return false;
+            }
+            else
+            {
+                // TODO: Implement the adress
+                return true;
+            }
+        }
+        #endregion
     }
 }
