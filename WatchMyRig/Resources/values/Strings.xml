@@ -10,13 +10,10 @@
     <item>Nanopool</item>
     <item>Ethermine</item>
   </string-array>
-
-
   <string name="coin_prompt">SELECT A COIN :</string>
   <string-array name="etherMine_arrayCoin">
     <item>ETH - Ethereum</item>
   </string-array>
-
   <string-array name="nanopool_arrayCoin">
     <item>ETH  - Ethereum</item>
     <item>ETC  - Ethereum Calssic </item>
@@ -25,4 +22,7 @@
     <item>XMR  - Monero</item>
     <item>PASC - Pascal</item>
   </string-array>
+  <string name="submit">SUBMIT</string>
+  
+  
 </resources>
