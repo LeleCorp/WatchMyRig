@@ -90,6 +90,28 @@ namespace watchmyrig
 			}
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f0d0001
+			public const int etherMine_arrayCoin = 2131558401;
+			
+			// aapt resource value: 0x7f0d0002
+			public const int nanopool_arrayCoin = 2131558402;
+			
+			// aapt resource value: 0x7f0d0000
+			public const int pool_array = 2131558400;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -2219,8 +2241,8 @@ namespace watchmyrig
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f07008f
-			public const int action0 = 2131165327;
+			// aapt resource value: 0x7f070091
+			public const int action0 = 2131165329;
 			
 			// aapt resource value: 0x7f07005a
 			public const int action_bar = 2131165274;
@@ -2246,8 +2268,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07005b
 			public const int action_context_bar = 2131165275;
 			
-			// aapt resource value: 0x7f070093
-			public const int action_divider = 2131165331;
+			// aapt resource value: 0x7f070095
+			public const int action_divider = 2131165333;
 			
 			// aapt resource value: 0x7f070003
 			public const int action_menu_divider = 2131165187;
@@ -2282,8 +2304,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070044
 			public const int buttonPanel = 2131165252;
 			
-			// aapt resource value: 0x7f070090
-			public const int cancel_action = 2131165328;
+			// aapt resource value: 0x7f070092
+			public const int cancel_action = 2131165330;
 			
 			// aapt resource value: 0x7f07002b
 			public const int center = 2131165227;
@@ -2297,8 +2319,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070052
 			public const int checkbox = 2131165266;
 			
-			// aapt resource value: 0x7f070096
-			public const int chronometer = 2131165334;
+			// aapt resource value: 0x7f070098
+			public const int chronometer = 2131165336;
 			
 			// aapt resource value: 0x7f070033
 			public const int clip_horizontal = 2131165235;
@@ -2327,20 +2349,20 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07006a
 			public const int demoImageView = 2131165290;
 			
-			// aapt resource value: 0x7f07006e
-			public const int design_bottom_sheet = 2131165294;
+			// aapt resource value: 0x7f070070
+			public const int design_bottom_sheet = 2131165296;
+			
+			// aapt resource value: 0x7f070077
+			public const int design_menu_item_action_area = 2131165303;
+			
+			// aapt resource value: 0x7f070076
+			public const int design_menu_item_action_area_stub = 2131165302;
 			
 			// aapt resource value: 0x7f070075
-			public const int design_menu_item_action_area = 2131165301;
+			public const int design_menu_item_text = 2131165301;
 			
 			// aapt resource value: 0x7f070074
-			public const int design_menu_item_action_area_stub = 2131165300;
-			
-			// aapt resource value: 0x7f070073
-			public const int design_menu_item_text = 2131165299;
-			
-			// aapt resource value: 0x7f070072
-			public const int design_navigation_view = 2131165298;
+			public const int design_navigation_view = 2131165300;
 			
 			// aapt resource value: 0x7f07000e
 			public const int disableHome = 2131165198;
@@ -2354,8 +2376,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07001c
 			public const int end = 2131165212;
 			
-			// aapt resource value: 0x7f07009b
-			public const int end_padder = 2131165339;
+			// aapt resource value: 0x7f07009d
+			public const int end_padder = 2131165341;
 			
 			// aapt resource value: 0x7f070023
 			public const int enterAlways = 2131165219;
@@ -2402,8 +2424,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07003f
 			public const int image = 2131165247;
 			
-			// aapt resource value: 0x7f07009a
-			public const int info = 2131165338;
+			// aapt resource value: 0x7f07009c
+			public const int info = 2131165340;
 			
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_previous_elevation = 2131165184;
@@ -2411,11 +2433,11 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07002f
 			public const int left = 2131165231;
 			
-			// aapt resource value: 0x7f070094
-			public const int line1 = 2131165332;
+			// aapt resource value: 0x7f070096
+			public const int line1 = 2131165334;
 			
-			// aapt resource value: 0x7f070098
-			public const int line3 = 2131165336;
+			// aapt resource value: 0x7f07009a
+			public const int line3 = 2131165338;
 			
 			// aapt resource value: 0x7f07000b
 			public const int listMode = 2131165195;
@@ -2423,8 +2445,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070041
 			public const int list_item = 2131165249;
 			
-			// aapt resource value: 0x7f070092
-			public const int media_actions = 2131165330;
+			// aapt resource value: 0x7f070094
+			public const int media_actions = 2131165332;
 			
 			// aapt resource value: 0x7f07001d
 			public const int middle = 2131165213;
@@ -2432,83 +2454,83 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070037
 			public const int mini = 2131165239;
 			
-			// aapt resource value: 0x7f070081
-			public const int mr_art = 2131165313;
-			
-			// aapt resource value: 0x7f070076
-			public const int mr_chooser_list = 2131165302;
-			
-			// aapt resource value: 0x7f070079
-			public const int mr_chooser_route_desc = 2131165305;
-			
-			// aapt resource value: 0x7f070077
-			public const int mr_chooser_route_icon = 2131165303;
+			// aapt resource value: 0x7f070083
+			public const int mr_art = 2131165315;
 			
 			// aapt resource value: 0x7f070078
-			public const int mr_chooser_route_name = 2131165304;
-			
-			// aapt resource value: 0x7f07007e
-			public const int mr_close = 2131165310;
-			
-			// aapt resource value: 0x7f070084
-			public const int mr_control_divider = 2131165316;
-			
-			// aapt resource value: 0x7f07008a
-			public const int mr_control_play_pause = 2131165322;
-			
-			// aapt resource value: 0x7f07008d
-			public const int mr_control_subtitle = 2131165325;
-			
-			// aapt resource value: 0x7f07008c
-			public const int mr_control_title = 2131165324;
-			
-			// aapt resource value: 0x7f07008b
-			public const int mr_control_title_container = 2131165323;
-			
-			// aapt resource value: 0x7f07007f
-			public const int mr_custom_control = 2131165311;
-			
-			// aapt resource value: 0x7f070080
-			public const int mr_default_control = 2131165312;
+			public const int mr_chooser_list = 2131165304;
 			
 			// aapt resource value: 0x7f07007b
-			public const int mr_dialog_area = 2131165307;
+			public const int mr_chooser_route_desc = 2131165307;
+			
+			// aapt resource value: 0x7f070079
+			public const int mr_chooser_route_icon = 2131165305;
 			
 			// aapt resource value: 0x7f07007a
-			public const int mr_expandable_area = 2131165306;
+			public const int mr_chooser_route_name = 2131165306;
 			
-			// aapt resource value: 0x7f07008e
-			public const int mr_group_expand_collapse = 2131165326;
-			
-			// aapt resource value: 0x7f070082
-			public const int mr_media_main_control = 2131165314;
-			
-			// aapt resource value: 0x7f07007d
-			public const int mr_name = 2131165309;
-			
-			// aapt resource value: 0x7f070083
-			public const int mr_playback_control = 2131165315;
-			
-			// aapt resource value: 0x7f07007c
-			public const int mr_title_bar = 2131165308;
-			
-			// aapt resource value: 0x7f070085
-			public const int mr_volume_control = 2131165317;
+			// aapt resource value: 0x7f070080
+			public const int mr_close = 2131165312;
 			
 			// aapt resource value: 0x7f070086
-			public const int mr_volume_group_list = 2131165318;
+			public const int mr_control_divider = 2131165318;
+			
+			// aapt resource value: 0x7f07008c
+			public const int mr_control_play_pause = 2131165324;
+			
+			// aapt resource value: 0x7f07008f
+			public const int mr_control_subtitle = 2131165327;
+			
+			// aapt resource value: 0x7f07008e
+			public const int mr_control_title = 2131165326;
+			
+			// aapt resource value: 0x7f07008d
+			public const int mr_control_title_container = 2131165325;
+			
+			// aapt resource value: 0x7f070081
+			public const int mr_custom_control = 2131165313;
+			
+			// aapt resource value: 0x7f070082
+			public const int mr_default_control = 2131165314;
+			
+			// aapt resource value: 0x7f07007d
+			public const int mr_dialog_area = 2131165309;
+			
+			// aapt resource value: 0x7f07007c
+			public const int mr_expandable_area = 2131165308;
+			
+			// aapt resource value: 0x7f070090
+			public const int mr_group_expand_collapse = 2131165328;
+			
+			// aapt resource value: 0x7f070084
+			public const int mr_media_main_control = 2131165316;
+			
+			// aapt resource value: 0x7f07007f
+			public const int mr_name = 2131165311;
+			
+			// aapt resource value: 0x7f070085
+			public const int mr_playback_control = 2131165317;
+			
+			// aapt resource value: 0x7f07007e
+			public const int mr_title_bar = 2131165310;
+			
+			// aapt resource value: 0x7f070087
+			public const int mr_volume_control = 2131165319;
 			
 			// aapt resource value: 0x7f070088
-			public const int mr_volume_item_icon = 2131165320;
+			public const int mr_volume_group_list = 2131165320;
 			
-			// aapt resource value: 0x7f070089
-			public const int mr_volume_slider = 2131165321;
+			// aapt resource value: 0x7f07008a
+			public const int mr_volume_item_icon = 2131165322;
+			
+			// aapt resource value: 0x7f07008b
+			public const int mr_volume_slider = 2131165323;
 			
 			// aapt resource value: 0x7f070016
 			public const int multiply = 2131165206;
 			
-			// aapt resource value: 0x7f070071
-			public const int navigation_header_container = 2131165297;
+			// aapt resource value: 0x7f070073
+			public const int navigation_header_container = 2131165299;
 			
 			// aapt resource value: 0x7f070021
 			public const int never = 2131165217;
@@ -2527,6 +2549,9 @@ namespace watchmyrig
 			
 			// aapt resource value: 0x7f070029
 			public const int pin = 2131165225;
+			
+			// aapt resource value: 0x7f07006c
+			public const int poolTextView = 2131165292;
 			
 			// aapt resource value: 0x7f070006
 			public const int progress_circular = 2131165190;
@@ -2603,11 +2628,11 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070013
 			public const int showTitle = 2131165203;
 			
-			// aapt resource value: 0x7f070070
-			public const int snackbar_action = 2131165296;
+			// aapt resource value: 0x7f070072
+			public const int snackbar_action = 2131165298;
 			
-			// aapt resource value: 0x7f07006f
-			public const int snackbar_text = 2131165295;
+			// aapt resource value: 0x7f070071
+			public const int snackbar_text = 2131165297;
 			
 			// aapt resource value: 0x7f070027
 			public const int snap = 2131165223;
@@ -2615,8 +2640,11 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070045
 			public const int spacer = 2131165253;
 			
-			// aapt resource value: 0x7f07006c
-			public const int spinner1 = 2131165292;
+			// aapt resource value: 0x7f07006e
+			public const int spinnerCoin = 2131165294;
+			
+			// aapt resource value: 0x7f07006d
+			public const int spinnerPool = 2131165293;
 			
 			// aapt resource value: 0x7f070008
 			public const int split_action_bar = 2131165192;
@@ -2633,8 +2661,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070031
 			public const int start = 2131165233;
 			
-			// aapt resource value: 0x7f070091
-			public const int status_bar_latest_event_content = 2131165329;
+			// aapt resource value: 0x7f070093
+			public const int status_bar_latest_event_content = 2131165331;
 			
 			// aapt resource value: 0x7f070065
 			public const int submit_area = 2131165285;
@@ -2642,17 +2670,17 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07000d
 			public const int tabMode = 2131165197;
 			
-			// aapt resource value: 0x7f070099
-			public const int text = 2131165337;
+			// aapt resource value: 0x7f07009b
+			public const int text = 2131165339;
 			
-			// aapt resource value: 0x7f070097
-			public const int text2 = 2131165335;
+			// aapt resource value: 0x7f070099
+			public const int text2 = 2131165337;
 			
 			// aapt resource value: 0x7f07004d
 			public const int textSpacerNoButtons = 2131165261;
 			
-			// aapt resource value: 0x7f070095
-			public const int time = 2131165333;
+			// aapt resource value: 0x7f070097
+			public const int time = 2131165335;
 			
 			// aapt resource value: 0x7f070043
 			public const int title = 2131165251;
@@ -2666,8 +2694,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f070047
 			public const int topPanel = 2131165255;
 			
-			// aapt resource value: 0x7f07006d
-			public const int touch_outside = 2131165293;
+			// aapt resource value: 0x7f07006f
+			public const int touch_outside = 2131165295;
 			
 			// aapt resource value: 0x7f070009
 			public const int up = 2131165193;
@@ -2678,8 +2706,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f07000a
 			public const int view_offset_helper = 2131165194;
 			
-			// aapt resource value: 0x7f070087
-			public const int volume_item_container = 2131165319;
+			// aapt resource value: 0x7f070089
+			public const int volume_item_container = 2131165321;
 			
 			// aapt resource value: 0x7f070022
 			public const int withText = 2131165218;
@@ -2949,9 +2977,6 @@ namespace watchmyrig
 			// aapt resource value: 0x7f080027
 			public const int ApplicationName = 2131230759;
 			
-			// aapt resource value: 0x7f080028
-			public const int EnterAdr = 2131230760;
-			
 			// aapt resource value: 0x7f080026
 			public const int Hello = 2131230758;
 			
@@ -3021,6 +3046,12 @@ namespace watchmyrig
 			// aapt resource value: 0x7f080025
 			public const int character_counter_pattern = 2131230757;
 			
+			// aapt resource value: 0x7f08002a
+			public const int coin_prompt = 2131230762;
+			
+			// aapt resource value: 0x7f080028
+			public const int enterAdr_text = 2131230760;
+			
 			// aapt resource value: 0x7f080000
 			public const int mr_button_content_description = 2131230720;
 			
@@ -3065,6 +3096,9 @@ namespace watchmyrig
 			
 			// aapt resource value: 0x7f08000e
 			public const int mr_user_route_category_name = 2131230734;
+			
+			// aapt resource value: 0x7f080029
+			public const int pool_prompt = 2131230761;
 			
 			// aapt resource value: 0x7f080022
 			public const int status_bar_notification_info_overflow = 2131230754;

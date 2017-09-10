@@ -5,7 +5,7 @@ using watchmyrig.Class;
 
 namespace watchmyrig
 {
-    [Activity(Label = "Watch My Rig", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Watch My Rig", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         Wallet walletEthermine;
@@ -15,10 +15,10 @@ namespace watchmyrig
         {
             base.OnCreate(bundle);
 
-            
+
 
             // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);
         }
 
         protected override void OnStart()

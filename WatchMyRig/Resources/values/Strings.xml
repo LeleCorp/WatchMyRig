@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">WatchMyRig</string>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">WatchMyRig</string>
 
-    <string name="EnterAdr">ENTER PUBLIC ADDRESS</string>
+  <string name="enterAdr_text">ENTER PUBLIC ADDRESS</string>
+
+  <string name="pool_prompt">SELECT A POOL :</string>
+  <string-array name="pool_array">
+    <item>Nanopool</item>
+    <item>Ethermine</item>
+  </string-array>
+
+
+  <string name="coin_prompt">SELECT A COIN :</string>
+  <string-array name="etherMine_arrayCoin">
+    <item>ETH - Ethereum</item>
+  </string-array>
+
+  <string-array name="nanopool_arrayCoin">
+    <item>ETH  - Ethereum</item>
+    <item>ETC  - Ethereum Calssic </item>
+    <item>SC   - SiaCoin</item>
+    <item>ZEC  - ZCASH</item>
+    <item>XMR  - Monero</item>
+    <item>PASC - Pascal</item>
+  </string-array>
 </resources>
