@@ -1,0 +1,28 @@
+﻿<Window x:Class="watchmyrig_client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:watchmyrig_client"
+        mc:Ignorable="d"
+        Title="WatchMyRig Client" Height="350" Width="525" ResizeMode="CanMinimize">
+    <Grid>
+        <Grid Margin="46,25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="181*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="110,27,106,128.463" TextWrapping="Wrap" Text="Select your .bat files to run on startup"/>
+            <Button Name="btSet" Content="Set" Margin="172,46,173,10" Click="BtSet_Click" Grid.Row="1"/>
+
+            <Button Name="btFiles" Content="Select files..." Click="BtFiles_Click" Margin="28,109,317,38.463"/>
+            <DataGrid Name="dgFiles" CanUserResizeColumns="False" Margin="134,69,90,61" AutoGenerateColumns="False" Grid.RowSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="File" Binding="{Binding FileName}" Width="3*"/>
+                    <DataGridCheckBoxColumn Header="Delete" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Name="btDel" Content="Delete" Margin="28,159,317,78" Grid.RowSpan="2" Click="btDel_Click"/>
+        </Grid>
+    </Grid>
+</Window>

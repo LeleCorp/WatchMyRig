@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="theme_black_notitlebar_background">#ff82b1ff</color>
+  <style name="Theme.Custom" parent="@android:style/Theme.Black.NoTitleBar">
+    <item name="android:colorPrimaryDark">#ffffffff</item>
+    <item name="android:colorBackground">@color/theme_black_notitlebar_background</item>
+    <item name="android:windowBackground">?android:attr/colorBackground</item>
+    <item name="android:colorButtonNormal">#fff1c28f</item>
+  </style>
+</resources>
