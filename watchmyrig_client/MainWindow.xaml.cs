@@ -16,6 +16,10 @@ using System.IO;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using IWshRuntimeLibrary;
+using Forms = System.Windows.Forms;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.ComponentModel;
 
 namespace watchmyrig_client
 {
@@ -24,24 +28,44 @@ namespace watchmyrig_client
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<File> StartFiles { get; set; }
+        private ObservableCollection<File> startFiles;
+        private Forms.NotifyIcon ni;
 
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this;
-            StartFiles = new ObservableCollection<File>();
-            dgFiles.ItemsSource = StartFiles;
+            this.Hide();
+            startFiles = new ObservableCollection<File>();
+            OnLoad();
+            Forms.MenuItem mi = new Forms.MenuItem("Exit");
+            mi.Click += new System.EventHandler(mi_Click);
+            Forms.ContextMenu cm = new Forms.ContextMenu();
+            cm.MenuItems.Add(mi);
+            ni = new Forms.NotifyIcon();
+            ni.Visible = true;
+            ni.Text = "Double click to restore";
+            ni.Icon = Properties.Resources.pick;
+            ni.ContextMenu = cm;
+            ni.DoubleClick +=
+                delegate(object sender, EventArgs args)
+                {
+                    this.Show();
+                    this.WindowState = WindowState.Normal;
+                    ni.Visible = false;
+                };
+            Closing += new CancelEventHandler(OnApplicationExit);
+            dgFiles.ItemsSource = startFiles;
         }
 
         private void BtFiles_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
             ofd.Filter = ".bat files (*.bat)|*.bat";
+            //ofd.Multiselect = true;
             if (ofd.ShowDialog() == true)
             {
-                StartFiles.Add(new File(ofd.SafeFileName, ofd.FileName));
-                
+                startFiles.Add(new File(ofd.SafeFileName, ofd.FileName, string.Empty));                
             }
             ReloadList();
         }
@@ -49,17 +73,18 @@ namespace watchmyrig_client
         private void ReloadList()
         {
             dgFiles.ItemsSource = null;
-            dgFiles.ItemsSource = StartFiles;
+            dgFiles.ItemsSource = startFiles;
         }
 
         private void BtSet_Click(object sender, RoutedEventArgs e)
         {
-            foreach (File f in StartFiles)
+            foreach (File f in startFiles)
             {
                 WshShell wshShell = new WshShell();
 
                 IWshRuntimeLibrary.IWshShortcut shortcut;
                 string startUpFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+                f.StartupPath = startUpFolderPath + "\\" + f.FileName + ".lnk";
 
                 // Create the shortcut
                 shortcut = (IWshRuntimeLibrary.IWshShortcut)wshShell.CreateShortcut(startUpFolderPath + "\\" + f.FileName + ".lnk");
@@ -69,6 +94,8 @@ namespace watchmyrig_client
                 // shortcut.IconLocation = Application.StartupPath + @"\App.ico";
                 shortcut.Save();
             }
+
+            MessageBox.Show("Files successfully copied to startup folder.");
 
         }
 
@@ -86,45 +113,78 @@ namespace watchmyrig_client
 
                     if ((bool)checkbox.IsChecked)
                     {
-
+                        if (System.IO.File.Exists(((File)item).StartupPath))
+                        {
+                            try
+                            {
+                                System.IO.File.Delete(((File)item).StartupPath);
+                                startFiles.Remove((File)item);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("The file you want to delete doesn't exist."); 
+                        }
                     }
                 }
             }
-        }
-    }
 
-    public partial class File
-    {
-        private string filename;
-        private string path;
-
-        public File(string _fileName, string _path)
-        {
-            filename = _fileName;
-            path = _path;
+            ReloadList();
         }
 
-        public string FileName
+        private void RestartRig()
         {
-            get
+            System.Diagnostics.Process.Start("shutdown.exe", "-r -t 10 -c 'Restarting'");
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
             {
-                return this.filename;
+                this.Hide();
+                ni.Visible = true;
             }
-            set
+            base.OnStateChanged(e);
+        }
+
+        private void mi_Click(object sender, EventArgs e)
+        {
+            ni.Visible = false;
+            this.Close();
+        }
+
+        private void OnApplicationExit(object sender, EventArgs e)
+        {
+            try
             {
-                this.filename = value;
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("file.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+
+                formatter.Serialize(stream, startFiles);
+                stream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
-        public string Path
+        private void OnLoad()
         {
-            get
+            try
             {
-                return this.path;
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("file.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                startFiles = (ObservableCollection<File>)formatter.Deserialize(stream);
+                stream.Close();
             }
-            set
+            catch (Exception ex)
             {
-                this.path = value;
+                MessageBox.Show(ex.Message);
             }
         }
     }
