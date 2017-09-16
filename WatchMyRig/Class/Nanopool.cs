@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
 namespace watchmyrig.Class
 {
@@ -20,7 +9,7 @@ namespace watchmyrig.Class
         public Nanopool(Wallet _wallet) : base(_wallet)
         {
             //url = "https://api.ethermine.org/miner//history";
-            url = wallet.getAddressPool() + "/v1/" + wallet.getCoin();
+            url = wallet.GetAddressPool() + "/v1/" + wallet.GetCoin();
             wallet.stats = GetStats();
         }
 
@@ -28,7 +17,7 @@ namespace watchmyrig.Class
         {
             StatsWallet stats = new StatsWallet();
 
-            url += "/user/" + wallet.getAddressWallet();
+            url += "/user/" + wallet.GetAddressWallet();
             JObject response = GetResponse(url);
             var lastData = response["data"];
 

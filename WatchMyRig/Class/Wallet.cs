@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-namespace watchmyrig.Class
+﻿namespace watchmyrig.Class
 {
     class Wallet
     {
@@ -40,17 +28,17 @@ namespace watchmyrig.Class
         }
 
         #region Getters
-        public string getAddressWallet()
+        public string GetAddressWallet()
         {
             return adrWallet;
         }
 
-        public string getCoin()
+        public string GetCoin()
         {
             return coin;
         }
 
-        public string getAddressPool()
+        public string GetAddressPool()
         {
             return adrPool;
         }

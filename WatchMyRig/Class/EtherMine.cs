@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Newtonsoft.Json.Linq;
-using System.Net;
+﻿using Newtonsoft.Json.Linq;
 
 namespace watchmyrig.Class
 {
@@ -21,7 +9,7 @@ namespace watchmyrig.Class
         public EtherMine(Wallet _wallet) : base(_wallet)
         {
             //url = "https://api.ethermine.org/miner//history";
-            url = wallet.getAddressPool();
+            url = wallet.GetAddressPool();
             wallet.stats = GetStats();
         }
 
@@ -29,7 +17,7 @@ namespace watchmyrig.Class
         {
             StatsWallet stats = new StatsWallet();
 
-            url += "/miner/" + wallet.getAddressWallet() + "/history";
+            url += "/miner/" + wallet.GetAddressWallet() + "/history";
             JObject response = GetResponse(url);
             var lastData = response["data"].Last;
 
