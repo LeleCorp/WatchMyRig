@@ -75,7 +75,7 @@ namespace watchmyrig
         {
             Spinner spinner = (Spinner)sender;
             int itemPosition = e.Position;
-            if (e.Position != 0)
+            if (itemPosition != 0)
             {
                 string textToast = string.Format("You have selected {0} as mine coin", spinner.GetItemAtPosition(itemPosition));
                 Toast.MakeText(this, textToast, ToastLength.Long).Show();
