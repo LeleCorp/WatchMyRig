@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Android.App;
 using Android.OS;
 using Android.Widget;
@@ -26,13 +29,11 @@ namespace watchmyrig
             coinSpinner = FindViewById<Spinner>(Resource.Id.spinnerCoin);
             submitButton = FindViewById<Button>(Resource.Id.submitButton);
 
-            //submitButton.SetOnTouchListener(this);
+            submitButton.Touch += OnTouch;
 
             // Fill Pool Spinner items from Ressource 
             poolSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(PoolSpinner_ItemSelected);
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.pool_array, Android.Resource.Layout.SimpleDropDownItem1Line);
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleDropDownItem1Line);
-            poolSpinner.Adapter = adapter;
+            poolSpinner.Adapter = FillSpinner(Resource.Array.pool_array);
 
             // Fill coin spinner switch POOLSPINNER
             coinSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(CoinSpinner_ItemSelected);
@@ -50,33 +51,50 @@ namespace watchmyrig
         private void PoolSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            string textToast = string.Format("You have selected {0} as pool server", spinner.GetItemAtPosition(e.Position));
-            Toast.MakeText(this, textToast, ToastLength.Long).Show();
+            int itemPosition = e.Position;
 
-            switch (spinner.GetItemAtPosition(e.Position).ToString())
+            if (itemPosition != 0)
             {
-                case "Nanopool":
-                    var adapterNanopoolCoin = ArrayAdapter.CreateFromResource(this, Resource.Array.nanopool_arrayCoin, Android.Resource.Layout.SimpleDropDownItem1Line);
-                    adapterNanopoolCoin.SetDropDownViewResource(Android.Resource.Layout.SimpleDropDownItem1Line);
-                    coinSpinner.Adapter = adapterNanopoolCoin;
-                    break;
+                string textToast = string.Format("You have selected {0} as pool server", spinner.GetItemAtPosition(itemPosition));
+                Toast.MakeText(this, textToast, ToastLength.Long).Show();
 
-                case "Ethermine":
-                    var adapterEthermine = ArrayAdapter.CreateFromResource(this, Resource.Array.etherMine_arrayCoin, Android.Resource.Layout.SimpleDropDownItem1Line);
-                    adapterEthermine.SetDropDownViewResource(Android.Resource.Layout.SimpleDropDownItem1Line);
-                    coinSpinner.Adapter = adapterEthermine;
-                    break;
+                switch (spinner.GetItemAtPosition(e.Position).ToString())
+                {
+                    case "Nanopool":
+                        coinSpinner.Adapter = FillSpinner(Resource.Array.nanopool_arrayCoin);
+                        break;
+
+                    case "Ethermine":
+                        coinSpinner.Adapter = FillSpinner(Resource.Array.etherMine_arrayCoin);
+                        break;
+                }
             }
         }
 
         private void CoinSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            string textToast = string.Format("You have selected {0} as mine coin", spinner.GetItemAtPosition(e.Position));
-            Toast.MakeText(this, textToast, ToastLength.Long).Show();
+            int itemPosition = e.Position;
+            if (e.Position != 0)
+            {
+                string textToast = string.Format("You have selected {0} as mine coin", spinner.GetItemAtPosition(itemPosition));
+                Toast.MakeText(this, textToast, ToastLength.Long).Show();
+            }
+        }
+
+        /// <summary>
+        /// Fill the content of a spinner
+        /// </summary>
+        /// <param name="_ArrayCoin">Resource.Array.arrayCoinNeeded</param>
+        /// <returns>Return ArrayAdapter</returns>
+        private ArrayAdapter FillSpinner(int _ArrayCoin)
+        {
+            var adapter = ArrayAdapter.CreateFromResource(this, _ArrayCoin, Android.Resource.Layout.SimpleDropDownItem1Line);
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleDropDownItem1Line);
+            return adapter;
         }
         #endregion
-        private void OnTouch()
+        private void OnTouch(object sender, EventArgs ea)
         {
             string textToast = string.Format("Nice");
             Toast.MakeText(this, textToast, ToastLength.Short).Show();
