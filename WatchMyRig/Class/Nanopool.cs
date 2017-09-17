@@ -8,7 +8,6 @@ namespace watchmyrig.Class
 
         public Nanopool(Wallet _wallet) : base(_wallet)
         {
-            //url = "https://api.ethermine.org/miner//history";
             url = wallet.GetAddressPool() + "/v1/" + wallet.GetCoin();
             wallet.stats = GetStats();
         }

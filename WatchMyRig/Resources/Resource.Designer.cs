@@ -2977,8 +2977,14 @@ namespace watchmyrig
 			// aapt resource value: 0x7f080027
 			public const int ApplicationName = 2131230759;
 			
+			// aapt resource value: 0x7f08002a
+			public const int Ethermine = 2131230762;
+			
 			// aapt resource value: 0x7f080026
 			public const int Hello = 2131230758;
+			
+			// aapt resource value: 0x7f08002b
+			public const int Nanopool = 2131230763;
 			
 			// aapt resource value: 0x7f08000f
 			public const int abc_action_bar_home_description = 2131230735;
@@ -3046,8 +3052,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f080025
 			public const int character_counter_pattern = 2131230757;
 			
-			// aapt resource value: 0x7f08002a
-			public const int coin_prompt = 2131230762;
+			// aapt resource value: 0x7f08002c
+			public const int coin_prompt = 2131230764;
 			
 			// aapt resource value: 0x7f080028
 			public const int enterAdr_text = 2131230760;
@@ -3103,8 +3109,8 @@ namespace watchmyrig
 			// aapt resource value: 0x7f080022
 			public const int status_bar_notification_info_overflow = 2131230754;
 			
-			// aapt resource value: 0x7f08002b
-			public const int submit = 2131230763;
+			// aapt resource value: 0x7f08002d
+			public const int submit = 2131230765;
 			
 			static String()
 			{

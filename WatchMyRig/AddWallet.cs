@@ -6,6 +6,8 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 
+using watchmyrig.Class;
+
 namespace watchmyrig
 {
     [Activity(Label = "Add address", MainLauncher = true, Icon = "@drawable/icon")]
@@ -16,6 +18,7 @@ namespace watchmyrig
         private Spinner coinSpinner;
         private Button submitButton;
 
+        private string poolSelected;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -59,10 +62,11 @@ namespace watchmyrig
 
             if (itemPosition != 0)
             {
+                poolSelected = spinner.GetItemAtPosition(e.Position).ToString();
                 string textToast = string.Format("You have selected {0} as pool server", spinner.GetItemAtPosition(itemPosition));
-                Toast.MakeText(this, textToast, ToastLength.Long).Show();
+                Toast.MakeText(this, textToast, ToastLength.Short).Show();
 
-                switch (spinner.GetItemAtPosition(e.Position).ToString())
+                switch (poolSelected)
                 {
                     case "Nanopool":
                         coinSpinner.Adapter = FillSpinner(Resource.Array.nanopool_arrayCoin);
@@ -84,8 +88,9 @@ namespace watchmyrig
             int itemPosition = e.Position;
             if (itemPosition != 0)
             {
-                string textToast = string.Format("You have selected {0} as mine coin", spinner.GetItemAtPosition(itemPosition));
-                Toast.MakeText(this, textToast, ToastLength.Long).Show();
+                string item = spinner.GetItemAtPosition(itemPosition).ToString();
+                string textToast = string.Format("You have selected {0} as mine coin", item);
+                Toast.MakeText(this, textToast, ToastLength.Short).Show();
             }
         }
 
@@ -125,6 +130,8 @@ namespace watchmyrig
             {
                 string textToast = string.Format("Nice {0}", GetEditTextValue(adrEditText));
                 Toast.MakeText(this, textToast, ToastLength.Short).Show();
+
+                Wallet wallet = new Wallet(GetEditTextValue(adrEditText), poolSelected,"eth");
             }
         }
 

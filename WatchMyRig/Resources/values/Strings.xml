@@ -6,6 +6,9 @@
   <string name="enterAdr_text">ENTER PUBLIC ADDRESS</string>
 
   <string name="pool_prompt">SELECT A POOL :</string>
+
+  <string name="Ethermine">Ethermine</string>
+  <string name="Nanopool">Nanopool</string>
   
   <string-array name="pool_array">
     <item>Make a choice</item>

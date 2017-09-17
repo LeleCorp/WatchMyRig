@@ -8,18 +8,19 @@
         private ApiClient apiClient;
         public StatsWallet stats;
 
-        public Wallet (string _adrWallet, string _adrPool,string _coin)
+        public Wallet (string _adrWallet, string _pool,string _coin)
         {
-            adrPool = _adrPool;
             adrWallet = _adrWallet;
             coin = _coin;
 
-            switch (adrPool)
+            switch (_pool)
             {
-                case "https://api.ethermine.org" :
+                case "Ethermine" :
+                    adrPool = "https://api.ethermine.org";
                     apiClient = new EtherMine(this);
                     break;
-                case "https://api.nanopool.org":
+                case "Nanopool":
+                    adrPool = "https://api.nanopool.org";
                     apiClient = new Nanopool(this);
                     break;
             }

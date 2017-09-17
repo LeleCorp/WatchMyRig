@@ -24,8 +24,8 @@ namespace watchmyrig
         {
             base.OnStart();
 
-            walletEthermine = new Wallet("8aec081e391d275dc0fb8e4697fc252359d353f8", "https://api.ethermine.org", "eth");
-            walletNanopool = new Wallet("0xb9e33a4a1dba378925b7f20d21b5ab2d78ad58f0", "https://api.nanopool.org", "eth");
+            walletEthermine = new Wallet("8aec081e391d275dc0fb8e4697fc252359d353f8", "Ethermine", "eth");
+            walletNanopool = new Wallet("0xb9e33a4a1dba378925b7f20d21b5ab2d78ad58f0", "Nanopool", "eth");
         }
 
         protected override void OnDestroy()
