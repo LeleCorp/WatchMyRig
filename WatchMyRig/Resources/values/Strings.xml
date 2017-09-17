@@ -6,16 +6,20 @@
   <string name="enterAdr_text">ENTER PUBLIC ADDRESS</string>
 
   <string name="pool_prompt">SELECT A POOL :</string>
+  
   <string-array name="pool_array">
     <item>Make a choice</item>
     <item>Nanopool</item>
     <item>Ethermine</item>
   </string-array>
+  
   <string name="coin_prompt">SELECT A COIN :</string>
+  
   <string-array name="etherMine_arrayCoin">
     <item>Make a choice</item>
     <item>ETH - Ethereum</item>
   </string-array>
+  
   <string-array name="nanopool_arrayCoin">
     <item>Make a choice</item>
     <item>ETH  - Ethereum</item>
@@ -25,5 +29,7 @@
     <item>XMR  - Monero</item>
     <item>PASC - Pascal</item>
   </string-array>
+  
   <string name="submit">SUBMIT</string>
+  
 </resources>

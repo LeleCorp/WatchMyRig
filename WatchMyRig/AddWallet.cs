@@ -29,6 +29,7 @@ namespace watchmyrig
             coinSpinner = FindViewById<Spinner>(Resource.Id.spinnerCoin);
             submitButton = FindViewById<Button>(Resource.Id.submitButton);
 
+
             submitButton.Touch += OnTouch;
 
             // Fill Pool Spinner items from Ressource 
@@ -44,10 +45,13 @@ namespace watchmyrig
             base.OnStart();
         }
 
+        #region ClickOnElement
 
+            #region Spinner
 
-#region ClickOnElement
-    #region Spinner
+        /// <summary>
+        /// Select item on poolSpinner
+        /// </summary>
         private void PoolSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -71,6 +75,9 @@ namespace watchmyrig
             }
         }
 
+        /// <summary>
+        /// Select item on coin spinner
+        /// </summary>
         private void CoinSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
@@ -94,11 +101,35 @@ namespace watchmyrig
             return adapter;
         }
         #endregion
+
+            #region Click On Submit button
+
+        /// <summary>
+        /// Get the value of an edit text
+        /// </summary>
+        /// <param name="editText"> The edit text box </param>
+        /// <returns>Return the value of the edit text</returns>
+        private string GetEditTextValue(EditText editText) => editText.Text.ToString();
+
+        /// <summary>
+        /// Provide a touch method for submit button
+        /// </summary>
         private void OnTouch(object sender, EventArgs ea)
         {
-            string textToast = string.Format("Nice");
-            Toast.MakeText(this, textToast, ToastLength.Short).Show();
+            if (GetEditTextValue(adrEditText).Equals(""))
+            {
+                string textToast = string.Format("Adress is required");
+                Toast.MakeText(this, textToast, ToastLength.Short).Show();
+            }
+            else
+            {
+                string textToast = string.Format("Nice {0}", GetEditTextValue(adrEditText));
+                Toast.MakeText(this, textToast, ToastLength.Short).Show();
+            }
         }
+
+        #endregion
+  
         #endregion
     }
 }
