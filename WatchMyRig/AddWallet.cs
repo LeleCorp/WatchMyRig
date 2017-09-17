@@ -7,6 +7,7 @@ using Android.OS;
 using Android.Widget;
 
 using watchmyrig.Class;
+using Android.Content;
 
 namespace watchmyrig
 {
@@ -132,6 +133,9 @@ namespace watchmyrig
                 Toast.MakeText(this, textToast, ToastLength.Short).Show();
 
                 Wallet wallet = new Wallet(GetEditTextValue(adrEditText), poolSelected,"eth");
+
+                /*var mainActivity = new Intent(this, typeof(MainActivity));
+                StartActivity(typeof(MainActivity),);*/
             }
         }
 
