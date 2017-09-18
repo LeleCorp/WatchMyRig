@@ -1,25 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Management;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using IWshRuntimeLibrary;
 using Forms = System.Windows.Forms;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.ComponentModel;
+using System.Collections.Generic;
+using OpenHardwareMonitor.Hardware;
 
 namespace watchmyrig_client
 {
@@ -30,6 +22,7 @@ namespace watchmyrig_client
     {
         private ObservableCollection<File> startFiles;
         private Forms.NotifyIcon ni;
+        private List<Gpu> gpuList;
 
         public MainWindow()
         {
@@ -38,23 +31,7 @@ namespace watchmyrig_client
             this.Hide();
             startFiles = new ObservableCollection<File>();
             OnLoad();
-            Forms.MenuItem mi = new Forms.MenuItem("Exit");
-            mi.Click += new System.EventHandler(mi_Click);
-            Forms.ContextMenu cm = new Forms.ContextMenu();
-            cm.MenuItems.Add(mi);
-            ni = new Forms.NotifyIcon();
-            ni.Visible = true;
-            ni.Text = "Double click to restore";
-            ni.Icon = Properties.Resources.pick;
-            ni.ContextMenu = cm;
-            ni.DoubleClick +=
-                delegate(object sender, EventArgs args)
-                {
-                    this.Show();
-                    this.WindowState = WindowState.Normal;
-                    ni.Visible = false;
-                };
-            Closing += new CancelEventHandler(OnApplicationExit);
+            
             dgFiles.ItemsSource = startFiles;
         }
 
@@ -70,12 +47,19 @@ namespace watchmyrig_client
             ReloadList();
         }
 
+        /// <summary>
+        /// Reloads list containing selected files.
+        /// </summary>
         private void ReloadList()
         {
-            dgFiles.ItemsSource = null;
             dgFiles.ItemsSource = startFiles;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtSet_Click(object sender, RoutedEventArgs e)
         {
             foreach (File f in startFiles)
@@ -91,14 +75,42 @@ namespace watchmyrig_client
 
                 shortcut.TargetPath = f.Path;
                 shortcut.Description = "Launch My Application";
-                // shortcut.IconLocation = Application.StartupPath + @"\App.ico";
                 shortcut.Save();
             }
 
             MessageBox.Show("Files successfully copied to startup folder.");
-
         }
 
+        private void GetGpuTemp()
+        {
+            var myComputer = new Computer();
+            
+            myComputer.GPUEnabled = true;
+            myComputer.Open();
+
+            foreach (var hardwareItem in myComputer.Hardware)
+            {
+                hardwareItem.Update();
+                hardwareItem.GetReport();
+
+                MessageBox.Show(hardwareItem.GetReport());
+
+                foreach (var sensor in hardwareItem.Sensors)
+                {
+                    if (sensor.SensorType == SensorType.Temperature)
+                    {
+                        MessageBox.Show(sensor.Name+" "+ sensor.Hardware+ " "+ sensor.SensorType+ " "+ sensor.Value);
+                    }
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event handler for delete button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btDel_Click(object sender, RoutedEventArgs e)
         {
             string result = MessageBox.Show("Are you sure ?", "Delete files", MessageBoxButton.YesNo, MessageBoxImage.Warning).ToString();
@@ -136,11 +148,18 @@ namespace watchmyrig_client
             ReloadList();
         }
 
+        /// <summary>
+        /// Restarting function.
+        /// </summary>
         private void RestartRig()
         {
             System.Diagnostics.Process.Start("shutdown.exe", "-r -t 10 -c 'Restarting'");
         }
 
+        /// <summary>
+        /// Handles window minimizing in tray bar.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnStateChanged(EventArgs e)
         {
             if (WindowState == WindowState.Minimized)
@@ -151,12 +170,22 @@ namespace watchmyrig_client
             base.OnStateChanged(e);
         }
 
-        private void mi_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles notify icon when app isn't in tray bar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Mi_Click(object sender, EventArgs e)
         {
             ni.Visible = false;
             this.Close();
         }
 
+        /// <summary>
+        /// Serializes list of files when closing the app.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnApplicationExit(object sender, EventArgs e)
         {
             try
@@ -173,19 +202,51 @@ namespace watchmyrig_client
             }
         }
 
+        /// <summary>
+        /// Retrieves objects, creates traybar item and handles closing event.
+        /// </summary>
         private void OnLoad()
         {
             try
             {
+                // Deserializing
                 IFormatter formatter = new BinaryFormatter();
                 Stream stream = new FileStream("file.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
                 startFiles = (ObservableCollection<File>)formatter.Deserialize(stream);
                 stream.Close();
+
+                // Adding items to traybar menu
+                Forms.MenuItem mi = new Forms.MenuItem("Exit");
+                mi.Click += new System.EventHandler(Mi_Click);
+                Forms.ContextMenu cm = new Forms.ContextMenu();
+                cm.MenuItems.Add(mi);
+
+                // Setting notify icon properties
+                ni = new Forms.NotifyIcon();
+                ni.Visible = true;
+                ni.Text = "Double click to restore";
+                ni.Icon = Properties.Resources.pick;
+                ni.ContextMenu = cm;
+                ni.DoubleClick +=
+                    delegate (object sender, EventArgs args)
+                    {
+                        this.Show();
+                        this.WindowState = WindowState.Normal;
+                        ni.Visible = false;
+                    };
+
+                // Add event handler for app closing
+                Closing += new CancelEventHandler(OnApplicationExit);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GetGpuTemp();
         }
     }
 }

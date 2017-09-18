@@ -23,6 +23,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button Name="btDel" Content="Delete" Margin="28,159,317,78" Grid.RowSpan="2" Click="btDel_Click"/>
+            <Button Content="Button" HorizontalAlignment="Left" Height="36" Margin="359,116,0,0" VerticalAlignment="Top" Width="58" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>
