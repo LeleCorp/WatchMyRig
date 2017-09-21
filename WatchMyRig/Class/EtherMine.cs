@@ -8,8 +8,7 @@ namespace watchmyrig.Class
 
         public EtherMine(Wallet _wallet) : base(_wallet)
         {
-            //url = "https://api.ethermine.org/miner//history";
-            url = wallet.GetAddressPool();
+            url = wallet.GetAdrPool();
             wallet.stats = GetStats();
         }
 

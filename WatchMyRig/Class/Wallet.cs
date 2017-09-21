@@ -4,6 +4,7 @@
     {
         private string adrWallet;
         private string adrPool;
+        private string pool;
         private string coin;
         private ApiClient apiClient;
         public StatsWallet stats;
@@ -12,8 +13,9 @@
         {
             adrWallet = _adrWallet;
             coin = _coin;
+            pool = _pool;
 
-            switch (_pool)
+            switch (pool)
             {
                 case "Ethermine" :
                     adrPool = "https://api.ethermine.org";
@@ -39,9 +41,14 @@
             return coin;
         }
 
-        public string GetAddressPool()
+        public string GetAdrPool()
         {
             return adrPool;
+        }
+
+        public string GetPool()
+        {
+            return pool;
         }
         #endregion
     }

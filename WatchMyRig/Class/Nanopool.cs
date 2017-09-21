@@ -8,7 +8,7 @@ namespace watchmyrig.Class
 
         public Nanopool(Wallet _wallet) : base(_wallet)
         {
-            url = wallet.GetAddressPool() + "/v1/" + wallet.GetCoin();
+            url = wallet.GetAdrPool() + "/v1/" + wallet.GetCoin();
             wallet.stats = GetStats();
         }
 

@@ -11,7 +11,7 @@ using Android.Content;
 
 namespace watchmyrig
 {
-    [Activity(Label = "Add address", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Add address", MainLauncher = false, Icon = "@drawable/icon")]
     public class AddWallet : Activity
     {
         private EditText adrEditText;

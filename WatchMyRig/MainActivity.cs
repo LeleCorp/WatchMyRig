@@ -1,34 +1,53 @@
 ﻿using Android.App;
 using Android.OS;
 using watchmyrig.Class;
+using System.Collections.Generic;
+using Android.Widget;
+using Android.Views;
+using static Android.Resource;
 
 namespace watchmyrig
 {
-    [Activity(Label = "Watch My Rig", MainLauncher = false, Icon = "@drawable/icon")]
+    [Activity(Label = "Watch My Rig", MainLauncher = true, Icon = "@drawable/Icon")]
     public class MainActivity : Activity
     {
+        List<Wallet> arrayWallet = new List<Wallet>();
         Wallet walletEthermine;
         Wallet walletNanopool;
+        private LinearLayout relativeLayout;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
+
+            relativeLayout = FindViewById<LinearLayout>(Resource.Id.MainLayout);
+
+            walletEthermine = new Wallet("e7d55118ef16d4c854e6f8fc139a7596f915201b", "Ethermine", "eth");
+            arrayWallet.Add(walletEthermine);
+
+            walletNanopool = new Wallet("0x28c0e919482c843ebad611be8451e20017d81716", "Nanopool", "eth");
+            arrayWallet.Add(walletNanopool);
+
+            var param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.MatchParent);
+
+
+            foreach (Wallet wallet in arrayWallet)
+            {
+                TextView tv = new TextView(this)
+                {
+                    Text = wallet.GetPool() + " " + wallet.GetCoin() + " " + wallet.stats.GetAverageHashrate()
+                };
+                tv.SetTextColor(GetColorStateList(Color.Black));
+                relativeLayout.AddView(tv, param);
+            }
         }
 
         protected override void OnStart()
         {
             base.OnStart();
 
-            walletEthermine = new Wallet("8aec081e391d275dc0fb8e4697fc252359d353f8", "Ethermine", "eth");
-            walletNanopool = new Wallet("0xb9e33a4a1dba378925b7f20d21b5ab2d78ad58f0", "Nanopool", "eth");
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
         }
     }
 }
